@@ -12,24 +12,44 @@ public class App
 {
     public static void main( String[] args )
     {
-        Laptop l = new Laptop();
-        l.setId(50);
-        l.setLname("dell");
+       
+        
+        Configuration con = new Configuration();
+        con.configure("hibernate.cfg.xml");
+        SessionFactory sf = con.buildSessionFactory();
         
         Students s= new Students();
+        Students s2= new Students();
+        
+        Laptop l = new Laptop();
+        l.setLid(50);
+        l.setLname("dell");
         
         s.setMarks(90);
-        s.setId(50);
+        s.setId(100);
         s.setSname("Jaadu");
         s.setLap(l);
         
-        Configuration con = new Configuration().configure().addAnnotatedClass(Students.class).addAnnotatedClass(Laptop.class);
-        SessionFactory sf = con.buildSessionFactory();
+        Laptop l2 = new Laptop();
+        l2.setLid(59);
+        l2.setLname("Hp");
+        
+        s2.setMarks(80);
+        s2.setId(170);
+        s2.setSname("Gandu");
+        s2.setLap(l2);
+        
+        
+        
         Session session = sf.openSession();
         
         Transaction tx = session.beginTransaction();
-        session.save(l);
-        session.save(s);
+       
+        session.persist(s);
+        session.persist(s2);
+        session.persist(l);
+        session.persist(l2);
+        
         
         tx.commit();
     	session.close();

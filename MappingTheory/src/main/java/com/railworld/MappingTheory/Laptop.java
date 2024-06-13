@@ -6,15 +6,19 @@ import jakarta.persistence.Id;
 @Entity
 public class Laptop {
 	@Id
-	private int id;
+	private int Lid;
 	private String Lname;
 	
 	
-	public int getId() {
-		return id;
+	public Laptop() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setId(int Id) {
-		id = Id;
+	public int getLid() {
+		return Lid;
+	}
+	public void setLid(int lid) {
+		Lid = lid;
 	}
 	public String getLname() {
 		return Lname;
@@ -23,9 +27,14 @@ public class Laptop {
 		Lname = lname;
 	}
 	
+	public Laptop(int lid, String lname) {
+		super();
+		Lid = lid;
+		Lname = lname;
+	}
 	@Override
 	public String toString() {
-		return "Laptop [Lid=" + id + ", Lname=" + Lname + "]";
+		return "Laptop [Lid=" + Lid + ", Lname=" + Lname + "]";
 	}
 	
 }
